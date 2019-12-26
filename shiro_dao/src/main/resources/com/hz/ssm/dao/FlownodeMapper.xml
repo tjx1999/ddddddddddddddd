@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.ssm.dao.FlownodeMapper" >
+  <resultMap id="BaseResultMap" type="com.hz.ssm.pojo.Flownode" >
+    <id column="nodeid" property="nodeid" jdbcType="INTEGER" />
+    <result column="flowid" property="flowid" jdbcType="INTEGER" />
+    <result column="empname" property="empname" jdbcType="VARCHAR" />
+    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="isresult" property="isresult" jdbcType="VARCHAR" />
+    <result column="proccesstime" property="proccesstime" jdbcType="DATE" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    nodeid, flowid, empname, orderid, isresult, proccesstime, remark1, remark2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hz.ssm.pojo.FlownodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flownode
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flownode
+    where nodeid = #{nodeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flownode
+    where nodeid = #{nodeid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hz.ssm.pojo.FlownodeExample" >
+    delete from flownode
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hz.ssm.pojo.Flownode" >
+    insert into flownode (nodeid, flowid, empname, 
+      orderid, isresult, proccesstime, 
+      remark1, remark2)
+    values (#{nodeid,jdbcType=INTEGER}, #{flowid,jdbcType=INTEGER}, #{empname,jdbcType=VARCHAR}, 
+      #{orderid,jdbcType=INTEGER}, #{isresult,jdbcType=VARCHAR}, #{proccesstime,jdbcType=DATE}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hz.ssm.pojo.Flownode" >
+    insert into flownode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nodeid != null" >
+        nodeid,
+      </if>
+      <if test="flowid != null" >
+        flowid,
+      </if>
+      <if test="empname != null" >
+        empname,
+      </if>
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="isresult != null" >
+        isresult,
+      </if>
+      <if test="proccesstime != null" >
+        proccesstime,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nodeid != null" >
+        #{nodeid,jdbcType=INTEGER},
+      </if>
+      <if test="flowid != null" >
+        #{flowid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="isresult != null" >
+        #{isresult,jdbcType=VARCHAR},
+      </if>
+      <if test="proccesstime != null" >
+        #{proccesstime,jdbcType=DATE},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hz.ssm.pojo.FlownodeExample" resultType="java.lang.Integer" >
+    select count(*) from flownode
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update flownode
+    <set >
+      <if test="record.nodeid != null" >
+        nodeid = #{record.nodeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowid != null" >
+        flowid = #{record.flowid,jdbcType=INTEGER},
+      </if>
+      <if test="record.empname != null" >
+        empname = #{record.empname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderid != null" >
+        orderid = #{record.orderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isresult != null" >
+        isresult = #{record.isresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proccesstime != null" >
+        proccesstime = #{record.proccesstime,jdbcType=DATE},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update flownode
+    set nodeid = #{record.nodeid,jdbcType=INTEGER},
+      flowid = #{record.flowid,jdbcType=INTEGER},
+      empname = #{record.empname,jdbcType=VARCHAR},
+      orderid = #{record.orderid,jdbcType=INTEGER},
+      isresult = #{record.isresult,jdbcType=VARCHAR},
+      proccesstime = #{record.proccesstime,jdbcType=DATE},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hz.ssm.pojo.Flownode" >
+    update flownode
+    <set >
+      <if test="flowid != null" >
+        flowid = #{flowid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        empname = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="isresult != null" >
+        isresult = #{isresult,jdbcType=VARCHAR},
+      </if>
+      <if test="proccesstime != null" >
+        proccesstime = #{proccesstime,jdbcType=DATE},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nodeid = #{nodeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hz.ssm.pojo.Flownode" >
+    update flownode
+    set flowid = #{flowid,jdbcType=INTEGER},
+      empname = #{empname,jdbcType=VARCHAR},
+      orderid = #{orderid,jdbcType=INTEGER},
+      isresult = #{isresult,jdbcType=VARCHAR},
+      proccesstime = #{proccesstime,jdbcType=DATE},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where nodeid = #{nodeid,jdbcType=INTEGER}
+  </update>
+</mapper>

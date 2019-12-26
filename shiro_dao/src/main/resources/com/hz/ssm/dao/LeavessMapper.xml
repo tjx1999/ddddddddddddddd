@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.ssm.dao.LeavessMapper" >
+  <resultMap id="BaseResultMap" type="com.hz.ssm.pojo.Leavess" >
+    <id column="applyid" property="applyid" jdbcType="INTEGER" />
+    <result column="flowid" property="flowid" jdbcType="VARCHAR" />
+    <result column="applytitle" property="applytitle" jdbcType="VARCHAR" />
+    <result column="applydetails" property="applydetails" jdbcType="VARCHAR" />
+    <result column="applystatus" property="applystatus" jdbcType="VARCHAR" />
+    <result column="begintime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="applytype" property="applytype" jdbcType="INTEGER" />
+    <result column="applytime" property="applytime" jdbcType="TIMESTAMP" />
+    <result column="endproccesstime" property="endproccesstime" jdbcType="TIMESTAMP" />
+    <result column="applyemp" property="applyemp" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    applyid, flowid, applytitle, applydetails, applystatus, begintime, endtime, applytype, 
+    applytime, endproccesstime, applyemp, remark1, remark2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hz.ssm.pojo.LeavessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from leavess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from leavess
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from leavess
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hz.ssm.pojo.LeavessExample" >
+    delete from leavess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hz.ssm.pojo.Leavess" >
+    insert into leavess (applyid, flowid, applytitle, 
+      applydetails, applystatus, begintime, 
+      endtime, applytype, applytime, 
+      endproccesstime, applyemp, remark1, 
+      remark2)
+    values (#{applyid,jdbcType=INTEGER}, #{flowid,jdbcType=VARCHAR}, #{applytitle,jdbcType=VARCHAR}, 
+      #{applydetails,jdbcType=VARCHAR}, #{applystatus,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{applytype,jdbcType=INTEGER}, #{applytime,jdbcType=TIMESTAMP}, 
+      #{endproccesstime,jdbcType=TIMESTAMP}, #{applyemp,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hz.ssm.pojo.Leavess" >
+    insert into leavess
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applyid != null" >
+        applyid,
+      </if>
+      <if test="flowid != null" >
+        flowid,
+      </if>
+      <if test="applytitle != null" >
+        applytitle,
+      </if>
+      <if test="applydetails != null" >
+        applydetails,
+      </if>
+      <if test="applystatus != null" >
+        applystatus,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="applytype != null" >
+        applytype,
+      </if>
+      <if test="applytime != null" >
+        applytime,
+      </if>
+      <if test="endproccesstime != null" >
+        endproccesstime,
+      </if>
+      <if test="applyemp != null" >
+        applyemp,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applyid != null" >
+        #{applyid,jdbcType=INTEGER},
+      </if>
+      <if test="flowid != null" >
+        #{flowid,jdbcType=VARCHAR},
+      </if>
+      <if test="applytitle != null" >
+        #{applytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="applydetails != null" >
+        #{applydetails,jdbcType=VARCHAR},
+      </if>
+      <if test="applystatus != null" >
+        #{applystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applytype != null" >
+        #{applytype,jdbcType=INTEGER},
+      </if>
+      <if test="applytime != null" >
+        #{applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endproccesstime != null" >
+        #{endproccesstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyemp != null" >
+        #{applyemp,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hz.ssm.pojo.LeavessExample" resultType="java.lang.Integer" >
+    select count(*) from leavess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update leavess
+    <set >
+      <if test="record.applyid != null" >
+        applyid = #{record.applyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowid != null" >
+        flowid = #{record.flowid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applytitle != null" >
+        applytitle = #{record.applytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applydetails != null" >
+        applydetails = #{record.applydetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applystatus != null" >
+        applystatus = #{record.applystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begintime != null" >
+        begintime = #{record.begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applytype != null" >
+        applytype = #{record.applytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.applytime != null" >
+        applytime = #{record.applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endproccesstime != null" >
+        endproccesstime = #{record.endproccesstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyemp != null" >
+        applyemp = #{record.applyemp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update leavess
+    set applyid = #{record.applyid,jdbcType=INTEGER},
+      flowid = #{record.flowid,jdbcType=VARCHAR},
+      applytitle = #{record.applytitle,jdbcType=VARCHAR},
+      applydetails = #{record.applydetails,jdbcType=VARCHAR},
+      applystatus = #{record.applystatus,jdbcType=VARCHAR},
+      begintime = #{record.begintime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      applytype = #{record.applytype,jdbcType=INTEGER},
+      applytime = #{record.applytime,jdbcType=TIMESTAMP},
+      endproccesstime = #{record.endproccesstime,jdbcType=TIMESTAMP},
+      applyemp = #{record.applyemp,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hz.ssm.pojo.Leavess" >
+    update leavess
+    <set >
+      <if test="flowid != null" >
+        flowid = #{flowid,jdbcType=VARCHAR},
+      </if>
+      <if test="applytitle != null" >
+        applytitle = #{applytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="applydetails != null" >
+        applydetails = #{applydetails,jdbcType=VARCHAR},
+      </if>
+      <if test="applystatus != null" >
+        applystatus = #{applystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applytype != null" >
+        applytype = #{applytype,jdbcType=INTEGER},
+      </if>
+      <if test="applytime != null" >
+        applytime = #{applytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endproccesstime != null" >
+        endproccesstime = #{endproccesstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyemp != null" >
+        applyemp = #{applyemp,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hz.ssm.pojo.Leavess" >
+    update leavess
+    set flowid = #{flowid,jdbcType=VARCHAR},
+      applytitle = #{applytitle,jdbcType=VARCHAR},
+      applydetails = #{applydetails,jdbcType=VARCHAR},
+      applystatus = #{applystatus,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      applytype = #{applytype,jdbcType=INTEGER},
+      applytime = #{applytime,jdbcType=TIMESTAMP},
+      endproccesstime = #{endproccesstime,jdbcType=TIMESTAMP},
+      applyemp = #{applyemp,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </update>
+</mapper>

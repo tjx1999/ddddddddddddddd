@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.hz.ssm</groupId>
+    <artifactId>shiro_01</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>shiro_web</artifactId>
+  <packaging>war</packaging>
+  <dependencies>
+  
+  
+
+
+  
+  	
+  	
+  	
+				<!-- shiro -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>1.2.3</version>
+
+			</dependency>
+
+			
+
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-quartz</artifactId>
+				<version>1.2.3</version>
+			</dependency>
+
+
+
+
+
+
+
+			<dependency>
+				<groupId>com.hz.ssm</groupId>
+				<artifactId>shiro_service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+  </dependencies>
+
+</project>
